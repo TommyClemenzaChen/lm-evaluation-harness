@@ -1,0 +1,30 @@
+task: fpsa
+tag:
+  - multiple_choice
+
+dataset_path: takala/financial_phrasebank # the name of the dataset on the HF Hub.
+dataset_name: sentences_allagree # the dataset configuration to use. Leave `null` if your dataset does not require a config to be passed. See https://huggingface.co/docs/datasets/load_hub#configurations for more info.
+dataset_kwargs: null # any extra keyword arguments that should be passed to the dataset constructor, e.g. `data_dir`.
+
+
+training_split: train
+validation_split: null
+test_split: null
+
+fewshot_split: train #<split name to draw fewshot examples from, or `null`>
+
+process_docs: !function utils.process_docs
+# we are at the prompt part
+
+doc_to_text: "Determine if the sentiment of the financial phrase. Respond with positive, negative, or neutral. Phrase: '{{sentence}}'"
+doc_to_choice: ['negative', 'neutral', 'positive']
+doc_to_target: "{{label}}"
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+
