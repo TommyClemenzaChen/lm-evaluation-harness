@@ -2,21 +2,30 @@
 
 ### Paper
 
-Title: `paper titles goes here`
+Title: Good Debt or Bad Debt: Detecting Semantic Orientations in Economic Texts: 
 
-Abstract: `link to paper PDF or arXiv abstract goes here`
+https://arxiv.org/pdf/1307.5336
 
-`Short description of paper / benchmark goes here:`
+Abstract: 
 
-Homepage: `homepage to the benchmark's website goes here, if applicable`
+
+The financial phrasebank dataset is a list of financial phrases with a corresponding label indicating if the sentiment of the phrase was negative(0), neutral(1), or positive(2). 
+
 
 
 ### Citation
 
 ```
-BibTeX-formatted citation goes here
+@inproceedings{ 
+ title= {Good debt or bad debt: Detecting semantic orientations in economic texts},
+ author= {Pekka Malo and Ankur Sinha and Pyry Takala and Pekka Korhonen and Jyrki Wallenius},
+ url={https://arxiv.org/abs/1307.5336},
+ booktitle={arXiv.org},
+ year={2013}, 
+ month={Jul}
+}
 ```
-
+<!---
 ### Groups, Tags, and Tasks
 
 #### Groups
@@ -32,11 +41,13 @@ BibTeX-formatted citation goes here
 * `task_name`: `1-sentence description of what this particular task does`
 * `task_name2`: ...
 
+--->
+
 ### Checklist
 
 For adding novel benchmarks/datasets to the library:
-* [ ] Is the task an existing benchmark in the literature?
-  * [ ] Have you referenced the original paper that introduced the task?
+* [x] Is the task an existing benchmark in the literature?
+  * [x] Have you referenced the original paper that introduced the task?
   * [ ] If yes, does the original paper provide a reference implementation? If so, have you checked against the reference implementation and documented how to run such a test?
 
 
