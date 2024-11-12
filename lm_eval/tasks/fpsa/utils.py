@@ -11,7 +11,7 @@ def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
         out_doc = {
             "query": doc['sentence'],
             "choices": ['negative', 'neutral', 'positive'],
-            "gold": label_map[doc['label']],
+            "gold": doc['label'],
         }
         return out_doc
 

@@ -8,7 +8,7 @@ NUM_FEWSHOT=1                  # Replace K with the desired number of few-shot e
 NUM_EXAMPLES=1                 # Replace N with the number of examples
 
 MODEL="hf"                      # Model type for eval task
-MODEL_ARGS="pretrained=EleutherAI/gpt-j-6B"  # Pretrained model
+MODEL_ARGS="pretrained=tchen175/llama3.1-8b-financial-news-sentiment"  # Pretrained model
 DEVICE="cuda:0"                 # Default device
 BATCH_SIZE=8                    # Default batch size
 
@@ -33,7 +33,25 @@ elif [ "$COMMAND" == "eval" ]; then
             --model_args "$MODEL_ARGS" \
             --tasks "$TASKS" \
             --device "$DEVICE" \
-            --batch_size "$BATCH_SIZE"
+            --batch_size "$BATCH_SIZE" \
+            --trust_remote_code 
+
+elif [ "$COMMAND" == "test_eval" ]; then
+
+    lm_eval --model "$MODEL" \
+            --model_args "$MODEL_ARGS" \
+            --tasks "$TASKS" \
+            --device "$DEVICE" \
+            --batch_size "$BATCH_SIZE" \
+            --trust_remote_code 
+
+
+
+elif [ "$COMMAND" == "env" ]; then
+    
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -e .
 
 else
     echo "Invalid command. Use 'data' to run the data task or 'eval' to run the eval task."
