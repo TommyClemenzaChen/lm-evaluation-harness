@@ -38,12 +38,21 @@ elif [ "$COMMAND" == "eval" ]; then
 
 elif [ "$COMMAND" == "test_eval" ]; then
 
+    # check if there is a second argument that is an int and if there is set the lmit to that
+    if [ "$2" -eq "$2" ] 2>/dev/null; then
+        LIMIT="$2"
+    else
+        LIMIT=3
+    fi
+
     lm_eval --model "$MODEL" \
             --model_args "$MODEL_ARGS" \
             --tasks "$TASKS" \
             --device "$DEVICE" \
-            --batch_size "$BATCH_SIZE" \
-            --trust_remote_code 
+            --trust_remote_code \
+            --log_samples \
+            --output_path "$OUTPUT_BASE_PATH" \
+            --limit "$LIMIT"
 
 
 
