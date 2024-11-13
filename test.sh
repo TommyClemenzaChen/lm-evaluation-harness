@@ -14,7 +14,7 @@ MODEL_ARGS="pretrained=meta-llama/Llama-3.1-8B"  # Pretrained model
 DEVICE="cuda:0"                 # Default device
 BATCH_SIZE=8                    # Default batch size
 
-# huggingface-cli login # use this if using a gated model
+huggingface-cli login # use this if using a gated model
 
 # Parse arguments
 COMMAND=$1  # First argument should be either "data" or "eval"
@@ -32,9 +32,17 @@ if [ "$COMMAND" == "data" ]; then
         --num_examples "$NUM_EXAMPLES"
 
 elif [ "$COMMAND" == "eval" ]; then
+
+    # if -p True is passed then set parrel to true
+    if [ "$2" == "-p" ]; then
+        PARALLEL=True
+    else
+        PARALLEL=False
+    fi
+
     # Run the eval task
     lm_eval --model "$MODEL" \
-            --model_args "$MODEL_ARGS" \
+            --model_args "$MODEL_ARGS,parallelize=$PARALLEL" \
             --tasks "$TASKS" \
             --device "$DEVICE" \
             --batch_size "$BATCH_SIZE" \
