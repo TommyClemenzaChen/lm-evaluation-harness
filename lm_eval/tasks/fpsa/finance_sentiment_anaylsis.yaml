@@ -11,7 +11,7 @@ fewshot_split: train #<split name to draw fewshot examples from, or `null`>
 process_docs: !function utils.process_docs
 # we are at the prompt part
 
-doc_to_text: "Determine the sentiment of the following financial phrase. Respond with positive, negative, or neutral. Phrase: '{{sentence}}'"
+doc_to_text: "Determine the sentiment of the following financial phrase. Respond with positive, negative, or neutral. \nPhrase: '{{sentence}}'"
 doc_to_choice: ['negative', 'neutral', 'positive']
 doc_to_target: "{{label}}"
 
