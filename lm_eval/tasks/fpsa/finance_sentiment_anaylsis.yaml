@@ -2,7 +2,8 @@ task: fpsa
 
 dataset_path: takala/financial_phrasebank # the name of the dataset on the HF Hub.
 dataset_name: sentences_allagree # the dataset configuration to use. Leave `null` if your dataset does not require a config to be passed. See https://huggingface.co/docs/datasets/load_hub#configurations for more info.
-
+dataset_kwargs:
+  trust_remote_code: True
 training_split: train
 validation_split: null
 test_split: train # no test/valid split

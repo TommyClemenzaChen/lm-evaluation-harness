@@ -10,12 +10,12 @@ NUM_EXAMPLES=1                 # Replace N with the number of examples
 MODEL="hf" 
 
                      # Model type for eval task
-MODEL_ARGS="pretrained=mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis"  # Pretrained model
+MODEL_ARGS="pretrained=meta-llama/Llama-3.1-8B-Instruct"  # Pretrained model
 DEVICE="cuda:0"                 # Default device
 BATCH_SIZE=8                    # Default batch size
 PARALLEL=True            
 
-# huggingface-cli login # use this if using a gated model
+huggingface-cli login # use this if using a gated model
 
 # Parse arguments
 COMMAND=$1  # First argument should be either "data" or "eval"
