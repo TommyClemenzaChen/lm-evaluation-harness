@@ -4,7 +4,7 @@
 OUTPUT_BASE_PATH="$(pwd)/temp" # Replace <path> with your desired output base path
 TASKS="fpsa"       # Replace <your-task-name> with the name of your task
 SET="train"     # Replace <train | val | test> with the set type
-NUM_FEWSHOT=1                  # Replace K with the desired number of few-shot examples
+NUM_FEWSHOT=3                  # Replace K with the desired number of few-shot examples
 NUM_EXAMPLES=1                 # Replace N with the number of examples
 
 MODEL="hf" 
@@ -19,6 +19,7 @@ huggingface-cli login # use this if using a gated model
 
 # Parse arguments
 COMMAND=$1  # First argument should be either "data" or "eval"
+
 
 if [ "$COMMAND" == "data" ]; then
     # Run the data task
@@ -35,7 +36,6 @@ if [ "$COMMAND" == "data" ]; then
 elif [ "$COMMAND" == "eval" ]; then
 
     
-
     # Run the eval task
     lm_eval --model "$MODEL" \
             --model_args "$MODEL_ARGS,parallelize=$PARALLEL" \
@@ -44,17 +44,18 @@ elif [ "$COMMAND" == "eval" ]; then
             --batch_size "$BATCH_SIZE" \
             --trust_remote_code \
             --output_path "$OUTPUT_BASE_PATH" \
+           #  --num_fewshot "$NUM_FEWSHOT" \
             
 elif [ "$COMMAND" == "wandb_eval" ]; then
     pip install lm_eval[wandb]
     lm_eval --model "$MODEL" \
-            --model_args "$MODEL_ARGS",  \
+            --model_args "$MODEL_ARGS,parallelize=$PARALLEL" \
             --tasks "$TASKS" \
             --device "$DEVICE" \
             --batch_size "$BATCH_SIZE" \
             --trust_remote_code \
             --output_path "$OUTPUT_BASE_PATH" \
-            --wandb_args project="llama-base-eval" \
+            --wandb_args project="fpsa" \
 
 elif [ "$COMMAND" == "test_eval" ]; then
 
